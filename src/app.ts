@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { setRoutes } from './routes';
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(express.json());
 setRoutes(app);
 
 // Error handling middleware
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response,  next: NextFunction) => {
   console.error(err);
   res.status(500).send('Internal Server Error');
 });
